@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <title>Operaciones</title>
+    <link rel="stylesheet" href="css/styleform.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="source/jquery-3.1.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#mostrar').hide();
+        $('#ocultar').click(function() {
+            $('#formulario').hide();
+        });
+        $('#mostrar').click(function() {
+            $('#formulario').show();
+        });
+        $('#ocultar').click(function() {
+            $('#mostrar').show();
+            $('#ocultar').hide();
+        });
+        $('#mostrar').click(function() {
+            $('#ocultar').show();
+            $('#mostrar').hide();
+        });
+        const btn = document.querySelector('#generar');
+        const sb = document.querySelector('#seleccion');
+        btn.onclick = (event) => {
+            var num1 = document.getElementById("num1").value;
+            var num2 = document.getElementById("num2").value;
+            var resul;
+            if (num1 != "") {
+                if (num2 != "") {
+                    if (sb.value != "Seleccione una opcion") {
+                        if (sb.value == "suma") {
+                            resul = parseFloat(num1) + parseFloat(num2);
+                        }
+                        if (sb.value == "resta") {
+                            resul = parseFloat(num1) - parseFloat(num2);
+                        }
+                        if (sb.value == "multiplicacion") {
+                            resul = parseFloat(num1) * parseFloat(num2);
+                        }
+                        if (sb.value == "division") {
+                            resul = parseFloat(num1) / parseFloat(num2);
+                        }
+                        document.getElementById("resultado").value = resul;
+                    } else {
+                        alert("Debe seleccionar una opcion");
+                    }
+                } else {
+                    alert("Debe ingresar un segundo numero");
+                }
+            } else {
+                alert("Debe ingresar un primer numero");
+            }
+        };
+    });
+    </script>
+</head>
+
+<body class="contenedor">
+    <div class="panel" id="panel"><br>
+        <B>Operaciones aritmeticas basicas<B><br>
+                <button type="button" id="ocultar" class="accion">Ocultar</button>
+                <button type="button" id="mostrar" class="accion">Mostrar</button>
+    </div>
+    <form class="formulario" id="formulario">
+        Numero 1: <input class="entrada" type="number" name="nume1" id="num1" placeholder="Primer numero">
+        Numero 2: <input class="entrada" type="number" name="nume2" id="num2" placeholder="Segundo numero">
+        <label for="seleccion">Operacion aritmetica</label>
+        <select id="seleccion">
+            <option>Seleccione una opcion</opcion>
+            <option>suma</option>
+            <option>resta</option>
+            <option>multiplicacion</option>
+            <option>division</option>
+        </select>
+        <button type="button" id="generar" class="btn">Generar</button>
+        <label for="resultado">Resultado:</label>
+        <input class="resultado" type="number" id="resultado">
+    </form>
+</body>
+
+</html>
